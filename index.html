@@ -59,12 +59,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#12151a; --ink-2:#1b2027;
-    --paper:#e6e1d4; --paper-2:#dcd6c7;
+    --ink:#12151a; --ink-2:#1b2027; --ink-rgb:18,21,26;
+    --paper:#e6e1d4; --paper-2:#dcd6c7; --paper-rgb:230,225,212;
     --steel:#5b6570; --steel-light:#8b95a0;
     --blueprint:#3e6e8e; --blueprint-light:#6fa1c2;
     --gold:#a8793f; --gold-light:#c99a5f;
-    --text-on-dark:#eeece3; --text-on-dark-dim:#9aa2ab;
+    --text-on-dark:#eeece3; --text-on-dark-dim:#9aa2ab; --text-muted:#c7c4ba;
     --text-on-paper:#1b1d1f; --text-on-paper-dim:#5b5b52;
     --line-on-dark: rgba(238,236,227,0.16);
     --line-on-paper: rgba(27,29,31,0.14);
@@ -72,6 +72,11 @@
     --sans-body:'Inter', sans-serif;
     --mono:'IBM Plex Mono', monospace;
     --maxw: 1100px;
+  }
+  html[data-theme="light"]{
+    --ink:#e6e1d4; --ink-2:#dcd6c7; --ink-rgb:230,225,212;
+    --text-on-dark:#1b1d1f; --text-on-dark-dim:#5b5b52; --text-muted:#5b5b52;
+    --line-on-dark: rgba(27,29,31,0.14);
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
@@ -101,7 +106,7 @@
   .sheet.paper .kicker .rule{background:var(--line-on-paper);}
 
   /* nav */
-  header.nav{position:sticky; top:0; z-index:50;background:rgba(18,21,26,0.9);backdrop-filter:blur(10px) saturate(140%);border-bottom:1px solid var(--line-on-dark);}
+  header.nav{position:sticky; top:0; z-index:50;background:rgba(var(--ink-rgb),0.9);backdrop-filter:blur(10px) saturate(140%);border-bottom:1px solid var(--line-on-dark);}
   .nav-inner{max-width:var(--maxw); margin:0 auto; padding:0 28px;display:flex; align-items:center; justify-content:space-between;height:64px; gap:16px;}
   .brand{display:flex; align-items:center; gap:10px;font-family:var(--mono); font-size:13px; letter-spacing:0.02em; flex:none;}
   .brand-mark{width:30px;height:30px;border:1px solid var(--gold-light);display:flex;align-items:center;justify-content:center;font-family:var(--serif-headline); font-weight:700; font-size:13px;color:var(--gold-light);position:relative;}
@@ -118,6 +123,9 @@
   .linkedin-icon{display:flex; align-items:center; justify-content:center; width:34px; height:34px; color:var(--text-on-dark-dim); border:1px solid var(--line-on-dark); transition:color .2s ease, border-color .2s ease;}
   .linkedin-icon svg{width:18px; height:18px;}
   .linkedin-icon:hover{color:#0A66C2; border-color:#0A66C2;}
+  .theme-toggle{display:flex; align-items:center; justify-content:center; width:34px; height:34px; color:var(--text-on-dark-dim); border:1px solid var(--line-on-dark); background:none; cursor:pointer; transition:color .2s ease, border-color .2s ease;}
+  .theme-toggle svg{width:17px; height:17px;}
+  .theme-toggle:hover{color:var(--gold-light); border-color:var(--gold-light);}
   .lang-toggle{display:flex; border:1px solid var(--line-on-dark); font-family:var(--mono); font-size:15px; position:relative;}
   .lang-toggle button{background:none;border:none;color:var(--text-on-dark-dim);padding:6px 8px;cursor:pointer; line-height:1;}
   .lang-toggle button.active{background:var(--gold-light);}
@@ -154,12 +162,12 @@
   .hero-photo-frame img{filter:grayscale(0.05) contrast(1.02);width:100%; object-fit:cover; aspect-ratio: 1/1.12;}
   .pub-bg-section{position:relative; overflow:hidden;}
   .pub-bg-section .bg-photo{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; opacity:0.4; animation: kenburns 26s ease-in-out infinite alternate;}
-  .pub-bg-section .bg-overlay{position:absolute; inset:0; background:linear-gradient(180deg, rgba(18,21,26,0.88), rgba(18,21,26,0.94) 40%, var(--ink) 92%);}
+  .pub-bg-section .bg-overlay{position:absolute; inset:0; background:linear-gradient(180deg, rgba(var(--ink-rgb),0.88), rgba(var(--ink-rgb),0.94) 40%, var(--ink) 92%);}
   .pub-bg-section .wrap{position:relative; z-index:1;}
   .section-bg{position:relative; overflow:hidden;}
   .section-bg .bg-photo{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; animation: kenburns 26s ease-in-out infinite alternate;}
   .section-bg.dark .bg-photo{opacity:0.38;}
-  .section-bg.dark .bg-overlay{position:absolute; inset:0; background:linear-gradient(180deg, rgba(18,21,26,0.88), rgba(18,21,26,0.94) 45%, var(--ink) 92%);}
+  .section-bg.dark .bg-overlay{position:absolute; inset:0; background:linear-gradient(180deg, rgba(var(--ink-rgb),0.88), rgba(var(--ink-rgb),0.94) 45%, var(--ink) 92%);}
   .section-bg.light .bg-photo{opacity:0.5;}
   .section-bg.light .bg-overlay{position:absolute; inset:0; background:linear-gradient(180deg, rgba(230,225,212,0.82), rgba(230,225,212,0.92) 45%, var(--paper) 92%);}
   .section-bg .wrap{position:relative; z-index:1;}
@@ -183,12 +191,12 @@
   .tdate{font-family:var(--mono); font-size:11px; color:var(--blueprint-light); margin-bottom:6px;}
   .trole{font-family:var(--serif-headline); font-size:18px; font-weight:600; color:var(--text-on-dark);}
   .torg{font-size:13.5px; color:var(--text-on-dark-dim); margin-top:2px;}
-  .tdesc{margin-top:11px; font-size:14px; color:#c7c4ba; max-width:64ch;}
+  .tdesc{margin-top:11px; font-size:14px; color:var(--text-muted); max-width:64ch;}
   .tdesc ul{margin:8px 0 0; padding-left:18px;}
   .tdesc li{margin-bottom:5px;}
   .case{margin-top:14px; padding:13px 15px; border-left:2px solid var(--line-on-dark);background:rgba(238,236,227,0.03);}
   .case b{display:block; font-family:var(--mono); font-size:11px; color:var(--gold-light); margin-bottom:6px;}
-  .case p{margin:0; font-size:13px; color:#c7c4ba;}
+  .case p{margin:0; font-size:13px; color:var(--text-muted);}
   .ttags{display:flex; flex-wrap:wrap; gap:6px; margin-top:10px;}
   .ttag{font-family:var(--mono); font-size:10.5px; padding:4px 8px; border:1px solid var(--line-on-dark); color:var(--text-on-dark-dim);}
 
@@ -214,7 +222,8 @@
   .edu-card .detail{font-size:12px; color:var(--text-on-paper-dim); margin-top:9px;}
   .edu-card a.link-chip{margin-top:10px; display:inline-block;}
 
-  .milestone-table{width:100%; border-collapse:collapse; margin-top:8px; font-size:13px;}
+  .table-card{background:var(--paper); border:1px solid var(--line-on-paper); padding:16px 20px; margin-top:8px;}
+  .milestone-table{width:100%; border-collapse:collapse; font-size:13px;}
   .milestone-table th{font-family:var(--mono); font-size:10.5px; text-transform:uppercase; letter-spacing:0.03em; text-align:left; color:var(--text-on-paper-dim); border-bottom:1px solid var(--line-on-paper); padding:10px 12px;}
   .milestone-table td{padding:12px; border-bottom:1px solid var(--line-on-paper); color:var(--text-on-paper);}
   .milestone-table tr:last-child td{border-bottom:none;}
@@ -259,7 +268,7 @@
 
   footer.sheet{position:relative; overflow:hidden;}
   footer.sheet .bg-photo{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0.55; animation: kenburns 26s ease-in-out infinite alternate;}
-  footer.sheet .bg-overlay{position:absolute; inset:0; background:linear-gradient(180deg, rgba(10,11,13,0.75), rgba(10,11,13,0.92) 60%, rgba(10,11,13,0.97));}
+  footer.sheet .bg-overlay{position:absolute; inset:0; background:linear-gradient(180deg, rgba(var(--ink-rgb),0.75), rgba(var(--ink-rgb),0.92) 60%, rgba(var(--ink-rgb),0.97));}
   footer.sheet .wrap{position:relative; z-index:1;}
 
   @media (max-width: 860px){
@@ -294,6 +303,10 @@
       <button data-page="contact" data-i18n="nav_contact">Επικοινωνία</button>
     </nav>
     <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <svg id="themeIconMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+        <svg id="themeIconSun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="display:none;"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </button>
       <a class="linkedin-icon" href="https://www.linkedin.com/in/loukas-kastanis-79484737" target="_blank" rel="noopener" aria-label="LinkedIn">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.28 2.38 4.28 5.47v6.27zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
       </a>
@@ -347,6 +360,16 @@
       </div>
     </div>
   </div>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="section-head" style="margin-bottom:20px;">
+        <h2 data-i18n="about_title">Η διαδρομή μου</h2>
+        <div class="kicker" style="margin:0;"><span class="idx">001b</span><span class="rule" style="width:80px;flex:none;"></span></div>
+      </div>
+      <p class="hero-desc" style="max-width:70ch; color:var(--text-on-dark-dim);" data-i18n="about_text">Ξεκίνησα σπουδάζοντας Επιστήμη Υλικών στα Ιωάννινα, αποφοιτώντας πρώτος στη σειρά μου. Από εκεί, το ενδιαφέρον μου για το πώς σχεδιάζονται και λειτουργούν τα συστήματα με έφερε στο ΕΜΠ — πρώτα σε μεταπτυχιακό στους Αυτοματισμούς, μετά σε διδακτορικό πάνω σε ηλεκτρονική επιστήμη υλικών. Παράλληλα με την έρευνα, δούλεψα σε πραγματικά βιομηχανικά περιβάλλοντα — από αεροδιαστημική μέχρι ανακύκλωση — μαθαίνοντας πώς η θεωρία συναντά την πράξη σε ένα εργοστάσιο. Σήμερα συνδυάζω αυτή τη διαδρομή στη μηχανολογία CNC και την προηγμένη κατασκευή, με το βλέμμα πάντα στραμμένο στο πώς τα υλικά, ο αυτοματισμός και ο σχεδιασμός συνεργάζονται.</p>
+    </div>
+  </section>
 
   <section class="block">
     <div class="wrap">
@@ -551,6 +574,7 @@
 
       <div style="margin-top:40px;">
         <div class="kicker"><span class="idx">005</span><span class="rule"></span><span data-i18n="milestones_kicker">ΑΚΑΔΗΜΑΪΚΗ ΠΟΡΕΙΑ</span></div>
+        <div class="table-card">
         <table class="milestone-table">
           <thead><tr>
             <th data-i18n="th_year">Έτος</th><th data-i18n="th_milestone">Ορόσημο</th><th data-i18n="th_institution">Ίδρυμα</th>
@@ -563,6 +587,7 @@
             <tr><td>2021</td><td data-i18n="m5">Διδακτορική διατριβή — MOS memory / laser nanocrystals</td><td data-i18n="inst_ntua">ΕΜΠ</td></tr>
           </tbody>
         </table>
+        </div>
       </div>
     </div>
   </section>
@@ -712,6 +737,7 @@
         <h2 data-i18n="contact_h2">Ανοιχτός σε νέες προτάσεις &amp; συνεργασίες.</h2>
         <div class="cta-row">
           <a class="btn primary" href="Loukas_Kastanis_CV.pdf" download data-i18n="cv_download">Λήψη CV (PDF) ↓</a>
+          <button class="btn" id="printPageBtn" data-i18n="print_page">Εκτύπωση σελίδας</button>
         </div>
       </div>
       <div class="contact-list">
@@ -742,6 +768,33 @@
   }
   navButtons.forEach(b => b.addEventListener('click', () => goTo(b.dataset.page)));
   document.getElementById('brandHome').addEventListener('click', () => goTo('profile'));
+  const printBtn = document.getElementById('printPageBtn');
+  if(printBtn){ printBtn.addEventListener('click', () => window.print()); }
+
+  // ---- dark / light theme toggle ----
+  const themeToggle = document.getElementById('themeToggle');
+  const iconMoon = document.getElementById('themeIconMoon');
+  const iconSun = document.getElementById('themeIconSun');
+  function applyTheme(theme){
+    if(theme === 'light'){
+      document.documentElement.setAttribute('data-theme', 'light');
+      iconMoon.style.display = 'none';
+      iconSun.style.display = 'block';
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+      iconMoon.style.display = 'block';
+      iconSun.style.display = 'none';
+    }
+  }
+  let savedTheme = 'dark';
+  try { savedTheme = localStorage.getItem('lk-theme') || 'dark'; } catch(e){}
+  applyTheme(savedTheme);
+  themeToggle.addEventListener('click', () => {
+    const current = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+    const next = current === 'light' ? 'dark' : 'light';
+    applyTheme(next);
+    try { localStorage.setItem('lk-theme', next); } catch(e){}
+  });
   document.querySelectorAll('[data-goto]').forEach(b => b.addEventListener('click', () => goTo(b.dataset.goto)));
 
   const toggle = document.getElementById('menuToggle');
@@ -788,6 +841,13 @@
     cta2:{el:"Επικοινωνία",en:"Contact",de:"Kontakt",it:"Contatto",es:"Contacto",fr:"Contact"},
     hero_photo_cap:{el:"ΑΤΤΙΚΗ, GR",en:"ATTICA, GR",de:"ATTIKA, GR",it:"ATTICA, GR",es:"ÁTICA, GR",fr:"ATTIQUE, GR"},
     floor_cap:{el:"ΕΙΚ. 02 — ΕΠΙΣΚΟΠΗΣΗ ΕΡΓΑΣΤΗΡΙΟΥ",en:"FIG. 02 — WORKSHOP OVERVIEW",de:"ABB. 02 — WERKSTATTÜBERSICHT",it:"FIG. 02 — PANORAMICA OFFICINA",es:"FIG. 02 — VISTA GENERAL DEL TALLER",fr:"FIG. 02 — VUE D'ENSEMBLE DE L'ATELIER"},
+    about_title:{el:"Η διαδρομή μου",en:"My journey",de:"Mein Werdegang",it:"Il mio percorso",es:"Mi trayectoria",fr:"Mon parcours"},
+    about_text:{el:"Ξεκίνησα σπουδάζοντας Επιστήμη Υλικών στα Ιωάννινα, αποφοιτώντας πρώτος στη σειρά μου. Από εκεί, το ενδιαφέρον μου για το πώς σχεδιάζονται και λειτουργούν τα συστήματα με έφερε στο ΕΜΠ — πρώτα σε μεταπτυχιακό στους Αυτοματισμούς, μετά σε διδακτορικό πάνω σε ηλεκτρονική επιστήμη υλικών. Παράλληλα με την έρευνα, δούλεψα σε πραγματικά βιομηχανικά περιβάλλοντα — από αεροδιαστημική μέχρι ανακύκλωση — μαθαίνοντας πώς η θεωρία συναντά την πράξη σε ένα εργοστάσιο. Σήμερα συνδυάζω αυτή τη διαδρομή στη μηχανολογία CNC και την προηγμένη κατασκευή, με το βλέμμα πάντα στραμμένο στο πώς τα υλικά, ο αυτοματισμός και ο σχεδιασμός συνεργάζονται.",
+      en:"I started out studying Materials Science in Ioannina, graduating top of my class. From there, my interest in how systems are designed and how they work brought me to NTUA — first for a master's in Automation Systems, then for a PhD in electronic materials science. Alongside research, I worked in real industrial settings — from aerospace to recycling — learning how theory meets practice on a factory floor. Today I bring that path together in CNC engineering and advanced manufacturing, always with an eye on how materials, automation, and design work together.",
+      de:"Ich begann mit einem Studium der Werkstoffwissenschaft in Ioannina und schloss als Jahrgangsbester ab. Von dort führte mich mein Interesse daran, wie Systeme entworfen werden und funktionieren, an die NTUA — zunächst für einen Master in Automatisierungssystemen, dann für eine Promotion in elektronischer Werkstoffwissenschaft. Neben der Forschung arbeitete ich in echten industriellen Umgebungen — von der Luft- und Raumfahrt bis zum Recycling — und lernte, wie Theorie in der Fabrikhalle auf die Praxis trifft. Heute vereine ich diesen Weg im CNC-Engineering und in der fortschrittlichen Fertigung, stets mit Blick darauf, wie Werkstoffe, Automatisierung und Konstruktion zusammenwirken.",
+      it:"Ho iniziato studiando Scienza dei Materiali a Ioannina, laureandomi primo della mia classe. Da lì, il mio interesse per come vengono progettati e funzionano i sistemi mi ha portato al NTUA — prima per un master in Sistemi di Automazione, poi per un dottorato in scienza dei materiali elettronici. Parallelamente alla ricerca, ho lavorato in contesti industriali reali — dall'aerospaziale al riciclaggio — imparando come la teoria incontra la pratica in fabbrica. Oggi unisco questo percorso nell'ingegneria CNC e nella manifattura avanzata, sempre attento a come materiali, automazione e progettazione lavorano insieme.",
+      es:"Empecé estudiando Ciencia de Materiales en Ioannina, graduándome el primero de mi promoción. A partir de ahí, mi interés por cómo se diseñan y funcionan los sistemas me llevó al NTUA — primero con un máster en Sistemas de Automatización, luego con un doctorado en ciencia de materiales electrónicos. Junto a la investigación, trabajé en entornos industriales reales — desde la aeroespacial hasta el reciclaje — aprendiendo cómo la teoría se encuentra con la práctica en una fábrica. Hoy combino ese recorrido en la ingeniería CNC y la fabricación avanzada, siempre atento a cómo trabajan juntos los materiales, la automatización y el diseño.",
+      fr:"J'ai commencé par étudier la science des matériaux à Ioannina, sortant major de ma promotion. De là, mon intérêt pour la façon dont les systèmes sont conçus et fonctionnent m'a conduit au NTUA — d'abord pour un master en systèmes d'automatisation, puis pour un doctorat en science des matériaux électroniques. Parallèlement à la recherche, j'ai travaillé dans des environnements industriels réels — de l'aérospatiale au recyclage — en apprenant comment la théorie rencontre la pratique en usine. Aujourd'hui, je réunis ce parcours dans l'ingénierie CNC et la fabrication avancée, toujours attentif à la façon dont les matériaux, l'automatisation et la conception fonctionnent ensemble."},
     exp_title:{el:"Επαγγελματική διαδρομή",en:"Professional journey",de:"Beruflicher Werdegang",it:"Percorso professionale",es:"Trayectoria profesional",fr:"Parcours professionnel"},
     present:{el:"ΣΗΜΕΡΑ",en:"PRESENT",de:"HEUTE",it:"OGGI",es:"ACTUALIDAD",fr:"AUJOURD'HUI"},
     job1_role:{el:"Μηχανολόγος Μηχανικός — CNC &amp; Advanced Manufacturing",en:"Mechanical Engineer — CNC &amp; Advanced Manufacturing",de:"Maschinenbauingenieur — CNC &amp; fortgeschrittene Fertigung",it:"Ingegnere meccanico — CNC e manifattura avanzata",es:"Ingeniero mecánico — CNC y fabricación avanzada",fr:"Ingénieur mécanique — CNC et fabrication avancée"},
@@ -883,6 +943,7 @@
     pub_diss:{el:"DISSERTATION<br>2021",en:"DISSERTATION<br>2021",de:"DISSERTATION<br>2021",it:"TESI<br>2021",es:"TESIS<br>2021",fr:"THÈSE<br>2021"},
     contact_kicker:{el:"ΕΠΙΚΟΙΝΩΝΙΑ",en:"CONTACT",de:"KONTAKT",it:"CONTATTO",es:"CONTACTO",fr:"CONTACT"},
     cv_download:{el:"Λήψη CV (PDF) ↓",en:"Download CV (PDF) ↓",de:"Lebenslauf herunterladen (PDF) ↓",it:"Scarica il CV (PDF) ↓",es:"Descargar CV (PDF) ↓",fr:"Télécharger le CV (PDF) ↓"},
+    print_page:{el:"Εκτύπωση σελίδας",en:"Print page",de:"Seite drucken",it:"Stampa pagina",es:"Imprimir página",fr:"Imprimer la page"},
     contact_h2:{el:"Ανοιχτός σε νέες προτάσεις &amp; συνεργασίες.",en:"Open to new proposals &amp; collaborations.",de:"Offen für neue Vorschläge &amp; Kooperationen.",it:"Aperto a nuove proposte e collaborazioni.",es:"Abierto a nuevas propuestas y colaboraciones.",fr:"Ouvert aux nouvelles propositions et collaborations."},
     c_email:{el:"Email",en:"Email",de:"E-Mail",it:"Email",es:"Correo",fr:"E-mail"},
     c_company:{el:"Εταιρεία",en:"Company",de:"Unternehmen",it:"Azienda",es:"Empresa",fr:"Entreprise"},
